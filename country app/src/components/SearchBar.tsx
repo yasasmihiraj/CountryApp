@@ -1,17 +1,18 @@
+import React from "react";
+
 type Props = {
-    onSearch: (value: string) => void;
-  };
-  
-  const SearchBar = ({ onSearch }: Props) => {
-    return (
-      <input
-        type="text"
-        placeholder="Search by country name..."
-        className="border px-4 py-2 rounded w-full mb-4"
-        onChange={(e) => onSearch(e.target.value)}
-      />
-    );
-  };
-  
-  export default SearchBar;
-  
+  onSearch: (value: string) => void;
+};
+
+const SearchBar: React.FC<Props> = ({ onSearch }) => {
+  return (
+    <input
+      type="text"
+      placeholder="Search by country name..."
+      className="w-full px-4 py-2 border border-gray-300 rounded shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+      onChange={(e) => onSearch(e.target.value)}
+    />
+  );
+};
+
+export default SearchBar;
