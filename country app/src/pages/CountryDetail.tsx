@@ -14,7 +14,7 @@ const LoadingSpinner = () => (
   </div>
 );
 
-// Reusable DetailItem to display each country detail
+// Reusable DetailItem to neatly display each country detail with its icon
 const DetailItem = ({
   icon,
   label,
@@ -36,7 +36,7 @@ const CountryDetail = () => {
   const { code } = useParams();
   const [country, setCountry] = useState<Country | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (code) {
@@ -44,7 +44,9 @@ const CountryDetail = () => {
       setError("");
       fetchCountryByCode(code)
         .then((data) => setCountry(data))
-        .catch(() => setError("Failed to load country details. Please try again."))
+        .catch(() =>
+          setError("Failed to load country details. Please try again.")
+        )
         .finally(() => setLoading(false));
     }
   }, [code]);
@@ -62,58 +64,73 @@ const CountryDetail = () => {
         <p className="text-xl font-semibold text-red-500">
           {error || "Country not found."}
         </p>
-        <Link to="/" className="mt-4 inline-flex items-center text-primary hover:underline">
+        <Link
+          to="/"
+          className="mt-4 inline-flex items-center text-primary hover:underline"
+        >
           <FaArrowLeft className="mr-2" /> Back to Home
         </Link>
       </div>
     );
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
-      <div className="max-w-4xl mx-auto p-6">
+    <main
+      className="min-h-screen 
+                 bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-500  
+                 dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 
+                 text-gray-900 dark:text-white transition-colors duration-300"
+    >
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <Link
           to="/"
-          className="inline-flex items-center mb-6 text-sm text-primary hover:underline"
+          className="inline-flex items-center mb-6 text-sm text-white bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-600 rounded-full px-4 py-2 shadow-md transition-colors duration-300"
         >
           <FaArrowLeft className="mr-2" /> Back
         </Link>
 
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
-          <div className="md:flex">
-            {/* Country Flag */}
-            <div className="md:w-1/2">
-              <img
-                src={country.flags.png}
-                alt={`${country.name.common} flag`}
-                className="w-full h-64 md:h-full object-cover"
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* Flag card */}
+          <div className="md:w-1/2 border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden shadow-sm">
+            <img
+              src={country.flags.png}
+              alt={`${country.name.common} flag`}
+              className="w-full h-56 md:h-full object-cover"
+            />
+          </div>
+
+          {/* Details card */}
+          <div className="md:w-1/2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 shadow-sm p-4">
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">
+              {country.name.common}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <em>Official Name:</em> {country.name.official}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <DetailItem
+                icon={<FaCity />}
+                label="Capital"
+                value={country.capital?.[0] || "—"}
               />
-            </div>
-
-            {/* Country Details */}
-            <div className="md:w-1/2 p-6">
-              <h1 className="text-3xl font-bold mb-2">{country.name.common}</h1>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                <em>Official Name:</em> {country.name.official}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <DetailItem
-                  icon={<FaCity />}
-                  label="Capital"
-                  value={country.capital?.[0] || "—"}
-                />
-                <DetailItem icon={<FaGlobe />} label="Region" value={country.region} />
-                <DetailItem
-                  icon={<FaUsers />}
-                  label="Population"
-                  value={country.population.toLocaleString()}
-                />
-                <DetailItem
-                  icon={<FaLanguage />}
-                  label="Languages"
-                  value={Object.values(country.languages || {}).join(", ")}
-                />
-              </div>
+              <DetailItem
+                icon={<FaGlobe />}
+                label="Region"
+                value={country.region}
+              />
+              <DetailItem
+                icon={<FaUsers />}
+                label="Population"
+                value={country.population.toLocaleString()}
+              />
+              <DetailItem
+                icon={<FaLanguage />}
+                label="Languages"
+                value={
+                  Object.keys(country.languages || {}).length
+                    ? Object.values(country.languages).join(", ")
+                    : "—"
+                }
+              />
             </div>
           </div>
         </div>

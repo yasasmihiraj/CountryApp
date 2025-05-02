@@ -63,13 +63,18 @@ const Home = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+    <main
+      className="min-h-screen 
+                 bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-500 
+                 dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 
+                 text-gray-900 dark:text-white transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 py-8">
         <header className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
-            🌍 Explore Countries Around the World
+            🌍 Explore Countries Around the World!
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-sm">
+          <p className="text-black-500 dark:text-gray-300 text-sm">
             Search by name or filter by region to discover country details.
           </p>
         </header>
@@ -87,7 +92,9 @@ const Home = () => {
         )}
 
         {error && (
-          <div className="text-center text-red-500 font-semibold py-16">{error}</div>
+          <div className="text-center text-red-500 font-semibold py-16">
+            {error}
+          </div>
         )}
 
         {!loading && !error && countries.length > 0 && (
@@ -101,7 +108,7 @@ const Home = () => {
         {!loading && !error && countries.length === 0 && (
           <div className="text-center py-16">
             <p className="text-xl font-semibold">No countries found.</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-200 mt-1">
               Try adjusting your search or filter criteria.
             </p>
           </div>
