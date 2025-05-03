@@ -65,9 +65,9 @@ const Home = () => {
   return (
     <main
       className="min-h-screen 
-                 bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-500 
-                 dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 
-                 text-gray-900 dark:text-white transition-colors duration-300"
+bg-gradient-to-r from-sky-400 via-teal-300 to-lime-300 
+dark:bg-gradient-to-r dark:from-sky-900 dark:via-teal-900 dark:to-lime-900 
+text-gray-900 dark:text-white transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 py-8">
         <header className="text-center mb-8">

@@ -76,16 +76,16 @@ const CountryDetail = () => {
   return (
     <main
       className="min-h-screen 
-                 bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-500  
-                 dark:bg-gradient-to-r dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 
-                 text-gray-900 dark:text-white transition-colors duration-300"
+bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 
+dark:bg-gradient-to-r dark:from-pink-900 dark:via-red-900 dark:to-yellow-900 
+text-gray-900 dark:text-white transition-colors duration-300"
     >
       <div className="max-w-5xl mx-auto px-4 py-8">
         <Link
           to="/"
           className="inline-flex items-center mb-6 text-sm text-white bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-600 rounded-full px-4 py-2 shadow-md transition-colors duration-300"
         >
-          <FaArrowLeft className="mr-2" /> Back
+          <FaArrowLeft className="mr-2" /> Back to Home
         </Link>
 
         <div className="flex flex-col md:flex-row gap-4">
