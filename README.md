@@ -179,7 +179,7 @@ This project is **MIT Licensed**, meaning you're free to **modify and distribute
 
 For questions or improvements:
 - GitHub: [yasasmihiraj](https://github.com/yasasmihiraj)
-- Email: **mihirajyasas2gmail.com**
+- Email: **mihirajyasas@gmail.com**
 
 ---
 
