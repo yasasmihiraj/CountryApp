@@ -5,12 +5,14 @@ import { FaUser, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaMoon, FaSun } from "re
 const Header = () => {
   const { user, login, logout } = useAuth();
   const [showModal, setShowModal] = useState<"login" | "register" | null>(null);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains("dark"));
+  const [error, setError] = useState<string | null>(null); // Added error state
 
   const handleSubmit = async (type: "login" | "register") => {
     setLoading(true);
+    setError(null); // Reset error before submitting
     try {
       const res = await fetch(`http://localhost:5000/api/auth/${type}`, {
         method: "POST",
@@ -22,10 +24,11 @@ const Header = () => {
         login(form.email, data.token);
         setShowModal(null);
       } else {
-        alert(data.message || "An error occurred.");
+        setError(data.message || "An error occurred.");
       }
     } catch (err) {
       console.error(err);
+      setError("Failed to connect to server.");
     } finally {
       setLoading(false);
     }
@@ -92,6 +95,16 @@ const Header = () => {
               </div>
             ) : (
               <>
+                {showModal === "register" && (
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full p-2 border border-gray-300 rounded mb-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                )}
+
                 <input
                   type="email"
                   placeholder="Email"
@@ -106,6 +119,10 @@ const Header = () => {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   className="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
+                
+                {/* Display error message if there's any */}
+                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
                 <button
                   onClick={() => handleSubmit(showModal)}
                   className="w-full bg-indigo-600 text-white font-semibold py-2 rounded hover:bg-indigo-700 transition"
