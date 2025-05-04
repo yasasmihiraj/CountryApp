@@ -9,7 +9,7 @@ const Filter: React.FC<Props> = ({ onFilter }) => {
 
   return (
     <select
-      className="w-full px-4 py-2 bg-white border border-red-500 rounded shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+      className="w-full px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 hover:bg-gray-100 dark:hover:bg-gray-700"
       onChange={(e) => onFilter(e.target.value)}
     >
       <option value="">All Regions</option>
