@@ -1,6 +1,3 @@
-Certainly! Here’s a **detailed and professional README.md** that thoroughly explains your Country Details App. It includes an improved project overview, installation and deployment guide, API details, and contribution guidelines.
-
----
 
 ### 📖 **README.md – Country Details App**
 ```md
